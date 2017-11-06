@@ -243,10 +243,10 @@ render_char(Face *self, PyObject *args) {
     if (color_space == NULL) { PyErr_NoMemory(); goto end; }
     ctx = CGBitmapContextCreate(buf, width, height, 8, width, color_space, (kCGBitmapAlphaInfoMask & kCGImageAlphaNone));
     if (ctx == NULL) { PyErr_SetString(PyExc_ValueError, "Failed to create bitmap context"); goto end; }
-    CGContextSetShouldAntialias(ctx, true);
-    CGContextSetShouldSmoothFonts(ctx, true);  // sub-pixel antialias
-    CGContextSetShouldSubpixelQuantizeFonts(ctx, true);
-    CGContextSetShouldSubpixelPositionFonts(ctx, true);
+    CGContextSetShouldAntialias(ctx, false);
+    CGContextSetShouldSmoothFonts(ctx, false);  // sub-pixel antialias
+    CGContextSetShouldSubpixelQuantizeFonts(ctx, false);
+    CGContextSetShouldSubpixelPositionFonts(ctx, false);
     CGContextSetRGBFillColor(ctx, 1, 1, 1, 1); // white glyphs
     CGAffineTransform transform = CGAffineTransformIdentity;
     CGContextSetTextDrawingMode(ctx, kCGTextFill);
